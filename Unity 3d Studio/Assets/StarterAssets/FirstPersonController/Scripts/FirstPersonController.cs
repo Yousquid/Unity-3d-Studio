@@ -74,7 +74,16 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
-		private bool IsCurrentDeviceMouse
+        [Header("Dash Mechanics")]
+        public float DashSpeed = 10f;
+        public float DashDuration = 0.2f;
+        private bool isDashing = false;
+        private float dashTime = 0f;
+		[Header("Double Jump Mechanics")]
+        public int jumpCount = 0;
+        public int maxJumps = 2;
+
+        private bool IsCurrentDeviceMouse
 		{
 			get
 			{
@@ -115,6 +124,18 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
+			Dash();
+
+			if (jumpCount < maxJumps)
+			{
+				if (Input.GetKeyDown(KeyCode.Space))
+				{
+					jumpCount += 1;
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                }
+			}
+			
 		}
 
 		private void LateUpdate()
@@ -197,13 +218,31 @@ namespace StarterAssets
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
+        private void Dash()
+        {
+            if ( Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+            {
+                isDashing = true;
+                dashTime = DashDuration;
+            }
 
-		private void JumpAndGravity()
+            if (isDashing)
+            {
+                _controller.Move(transform.forward * DashSpeed * Time.deltaTime);
+                dashTime -= Time.deltaTime;
+                if (dashTime <= 0)
+                {
+                    isDashing = false;
+                }
+            }
+        }
+        private void JumpAndGravity()
 		{
 			if (Grounded)
 			{
 				// reset the fall timeout timer
 				_fallTimeoutDelta = FallTimeout;
+				jumpCount = 0;
 
 				// stop our velocity dropping infinitely when grounded
 				if (_verticalVelocity < 0.0f)
@@ -216,6 +255,7 @@ namespace StarterAssets
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+					jumpCount += 1;
 				}
 
 				// jump timeout
