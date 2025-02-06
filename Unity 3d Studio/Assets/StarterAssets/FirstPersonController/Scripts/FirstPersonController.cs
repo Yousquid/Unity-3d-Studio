@@ -82,7 +82,7 @@ namespace StarterAssets
 		[Header("Double Jump Mechanics")]
         public int jumpCount = 0;
         public int maxJumps = 2;
-
+		public float dashForce;
         private bool IsCurrentDeviceMouse
 		{
 			get
@@ -220,15 +220,16 @@ namespace StarterAssets
 		}
         private void Dash()
         {
-            if ( Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+            if ( Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && jumpCount < maxJumps)
             {
                 isDashing = true;
                 dashTime = DashDuration;
+				jumpCount += 1;
             }
 
             if (isDashing)
             {
-                _controller.Move(transform.forward * DashSpeed * Time.deltaTime);
+                _controller.Move(transform.forward * DashSpeed * Time.deltaTime * dashForce);
                 dashTime -= Time.deltaTime;
                 if (dashTime <= 0)
                 {
