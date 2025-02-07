@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteractionWithSouls : MonoBehaviour
+public class ScreenCenterObjectCheck : MonoBehaviour
 {
     public int rayInteractionOffset = 15;
     public RaycastHit[,] hits;
-    public bool isTeleport = false;
+    public bool canTeleport = false;
     public Vector3 teleportDestination;
+    public GameObject teleportationTarget;
 
     // Start is called before the first frame update
     void Start()
     {
+       
         hits = new RaycastHit[rayInteractionOffset * 2, rayInteractionOffset * 2];
 
     }
@@ -19,28 +21,15 @@ public class PlayerInteractionWithSouls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            SoundSystem.instance.PlaySound("sword");
-        }
+       
         CastRaytoArea();
-        isTeleport = CanTeleportWithinArea();
+        canTeleport = CanTeleportWithinArea();
 
-        if (isTeleport)
-        {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                CharacterController controller = GetComponent<CharacterController>();
-                controller.enabled = false;
-                this.transform.position = teleportDestination;
-                controller.enabled = true;
-            }
-        }
-
+     
        
     }
 
-    void CastRaytoArea()
+    public void CastRaytoArea()
     {
         hits = new RaycastHit[rayInteractionOffset*2, rayInteractionOffset*2];
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
@@ -71,7 +60,7 @@ public class PlayerInteractionWithSouls : MonoBehaviour
         }
     }
 
-    bool CanTeleportWithinArea()
+    public bool CanTeleportWithinArea()
     {
         foreach (RaycastHit hit in hits)
         {
@@ -80,6 +69,7 @@ public class PlayerInteractionWithSouls : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Soul")
                 {
                     teleportDestination = hit.collider.transform.position;
+                    teleportationTarget = hit.collider.gameObject;
                     return true;
                 }
                 else if (hit.collider.gameObject.tag == "Soul")

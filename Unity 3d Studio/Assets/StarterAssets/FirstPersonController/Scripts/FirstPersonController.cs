@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 #endif
 
 namespace StarterAssets
@@ -79,10 +80,17 @@ namespace StarterAssets
         public float DashDuration = 0.2f;
         private bool isDashing = false;
         private float dashTime = 0f;
-		[Header("Double Jump Mechanics")]
+        public float dashForce;
+        [Header("Double Jump Mechanics")]
         public int jumpCount = 0;
         public int maxJumps = 2;
-		public float dashForce;
+        [Header("Hook Mechanics")]
+        public float hookSpeed = 50f;
+        public float hookForce = 4f;
+        public bool isTeleporting = false;
+		public ScreenCenterObjectCheck aimCheck;
+		public Rigidbody rigidbody;
+
         private bool IsCurrentDeviceMouse
 		{
 			get
@@ -117,6 +125,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+			aimCheck = GetComponent<ScreenCenterObjectCheck>();
 		}
 
 		private void Update()
@@ -126,8 +136,9 @@ namespace StarterAssets
 			Move();
 
 			Dash();
+			TeleportPlayerToTarget();
 
-			if (jumpCount < maxJumps)
+            if (jumpCount < maxJumps)
 			{
 				if (Input.GetKeyDown(KeyCode.Space))
 				{
@@ -304,6 +315,34 @@ namespace StarterAssets
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+
+		private void TeleportPlayerToTarget()
+		{
+			float time = 0;
+			float hookDuration = 1f;
+			if (aimCheck.canTeleport)
+			{
+				if (Input.GetKeyDown(KeyCode.F))
+				{
+					time = hookDuration;
+					isTeleporting = true;
+
+				}
+			}
+
+			if (isTeleporting)
+			{
+				_controller.enabled = false;
+				Vector3 destination = (aimCheck.teleportDestination - this.transform.position).normalized;
+				rigidbody.AddForce(destination*hookForce);
+				time -= Time.deltaTime;
+                if (time <= 0)
+				{
+                    _controller.enabled = true;
+                    isTeleporting = false;
+				}
+			}
 		}
 	}
 }
