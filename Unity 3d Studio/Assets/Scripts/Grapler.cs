@@ -9,7 +9,7 @@ public class Grapler : MonoBehaviour
     public float hookForce = 30f; // The force applied when grappling
     public float maxGrappleDistance = 40f; // Maximum grapple distance
     public LayerMask grappleLayer; // Define what surfaces can be grappled
-    public float graplerYoofset = 5;
+    public float graplerYoofset = 3;
 
     private Vector3 grapplePoint; // The point to grapple to
     private Vector3 velocity; // Simulated velocity for force-based movement
