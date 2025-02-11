@@ -88,8 +88,6 @@ namespace StarterAssets
         public float hookSpeed = 50f;
         public float hookForce = 4f;
         public bool isTeleporting = false;
-		public ScreenCenterObjectCheck aimCheck;
-		public Rigidbody rigidbody;
 
         private bool IsCurrentDeviceMouse
 		{
@@ -126,7 +124,7 @@ namespace StarterAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 
-			aimCheck = GetComponent<ScreenCenterObjectCheck>();
+
 		}
 
 		private void Update()
@@ -136,7 +134,6 @@ namespace StarterAssets
 			Move();
 
 			Dash();
-			TeleportPlayerToTarget();
 
             if (jumpCount < maxJumps)
 			{
@@ -317,32 +314,6 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
-		private void TeleportPlayerToTarget()
-		{
-			float time = 0;
-			float hookDuration = 1f;
-			if (aimCheck.canTeleport)
-			{
-				if (Input.GetKeyDown(KeyCode.F))
-				{
-					time = hookDuration;
-					isTeleporting = true;
-
-				}
-			}
-
-			if (isTeleporting)
-			{
-				_controller.enabled = false;
-				Vector3 destination = (aimCheck.teleportDestination - this.transform.position).normalized;
-				rigidbody.AddForce(destination*hookForce);
-				time -= Time.deltaTime;
-                if (time <= 0)
-				{
-                    _controller.enabled = true;
-                    isTeleporting = false;
-				}
-			}
-		}
+		
 	}
 }
