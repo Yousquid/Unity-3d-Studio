@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public FirstPersonController playerMovement;
+    public PlayerRigidbodyBasedMove playerMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement = GetComponent<FirstPersonController>();
+        playerMovement = GetComponent<PlayerRigidbodyBasedMove>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.gameObject.tag == "Soul")
         {
-            playerMovement.jumpCount -= 1;;
+            playerMovement.jumpOrdashCount -= 1;;
         }
     }
 }
