@@ -9,6 +9,8 @@ public class PlaceObject : MonoBehaviour
     public GameObject placed;
     public float currentRayDistance = 5f;
     public float currentHeight = 0f;
+    public float maxPlaceDistance = 13f;
+    public float minPlaceDistance = 0.5f;
     public bool isPlacing = false;
     public int soulAmount = 0;
     public int soulMax = 2;
@@ -35,11 +37,11 @@ public class PlaceObject : MonoBehaviour
                 currentHeight = Mathf.Clamp(currentHeight, -10.0f, 10.0f); // Set min/max height
             }
 
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.Q) && currentRayDistance < maxPlaceDistance)
             {
                 currentRayDistance += 0.1F;
             }
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) && currentRayDistance > minPlaceDistance)
             {
                 currentRayDistance -= 0.1F;
             }

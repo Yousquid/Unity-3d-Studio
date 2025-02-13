@@ -61,6 +61,6 @@ public class Grapler : MonoBehaviour
     {
         isGrappling = false;
         rb.useGravity = true; // Re-enable gravity
-        rb.velocity = Vector3.zero; // Stop movement
+        //rb.velocity = Vector3.zero; // Stop movement
     }
 }
