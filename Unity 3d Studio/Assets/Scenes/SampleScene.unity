@@ -1286,6 +1286,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1831961968}
+    - targetCorrespondingSourceObject: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1831961973}
   m_SourcePrefab: {fileID: 100100000, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
 --- !u!1 &579874968
 GameObject:
@@ -2990,6 +2994,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2049001709}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2049001710}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!1 &973777766
 GameObject:
@@ -5523,12 +5531,34 @@ MonoBehaviour:
   mouseXSensitivity: 200
   mouseYSensitivity: 200
   orientation: {fileID: 321407422}
+--- !u!20 &1831961971 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74,
+    type: 3}
+  m_PrefabInstance: {fileID: 516156755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1831961972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74,
     type: 3}
   m_PrefabInstance: {fileID: 516156755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1831961973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831961961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5218b700b473d47ac16bfd0c667ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayInteractionOffset: 15
+  canTeleport: 0
+  teleportDestination: {x: 0, y: 0, z: 0}
+  teleportationTarget: {fileID: 0}
 --- !u!1 &1884551073
 GameObject:
   m_ObjectHideFlags: 0
@@ -6733,14 +6763,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfb4593cfb43dc4580e285e5b784854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScreenAimCheck: {fileID: 0}
-  controller: {fileID: 0}
-  hookForce: 30
-  maxGrappleDistance: 40
-  grappleLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  graplerYoofset: 3
+  rb: {fileID: 0}
+  playerTransform: {fileID: 0}
+  playerCamera: {fileID: 0}
+  teleportScript: {fileID: 0}
+  grappleKey: 324
+  grappleSpeed: 20
+  stopDistance: 2
+  isGrappling: 0
 --- !u!4 &2049001706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
@@ -6820,6 +6850,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
+--- !u!114 &2049001710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049001686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfb4593cfb43dc4580e285e5b784854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2049001707}
+  playerTransform: {fileID: 2049001706}
+  playerCamera: {fileID: 1831961971}
+  teleportScript: {fileID: 1831961973}
+  grappleKey: 102
+  grappleSpeed: 20
+  stopDistance: 2
+  isGrappling: 0
 --- !u!43 &2069266983
 Mesh:
   m_ObjectHideFlags: 0
