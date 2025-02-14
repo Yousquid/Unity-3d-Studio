@@ -4,81 +4,63 @@ using UnityEngine;
 
 public class Grapler : MonoBehaviour
 {
-    public ScreenCenterObjectCheck ScreenAimCheck;
-    public CharacterController controller; // Character controller for movement
-    public float hookForce = 30f; // The force applied when grappling
-    public float maxGrappleDistance = 40f; // Maximum grapple distance
-    public LayerMask grappleLayer; // Define what surfaces can be grappled
-    public float graplerYoofset = 3;
+    [Header("References")]
+    public Rigidbody rb;
+    public Transform playerTransform;
+    public Camera playerCamera;
+    public ScreenCenterObjectCheck teleportScript; // Replace with your actual script name
 
-    private Vector3 grapplePoint; // The point to grapple to
-    private Vector3 velocity; // Simulated velocity for force-based movement
-    private bool isGrappling = false; // Whether the player is currently grappling
+    [Header("Grapple Settings")]
+    public KeyCode grappleKey = KeyCode.Mouse1; // Right Mouse Button
+    public float grappleSpeed = 20f;
+    public float stopDistance = 2f; // Stop when close to target
+    public bool isGrappling = false;
 
-    private bool isStoping = false;
-    private float stopingTimer = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Vector3 grapplePoint;
 
-    // Update is called once per frame
     void Update()
     {
-        if (ScreenAimCheck.canTeleport && Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(grappleKey) && teleportScript.canTeleport)
         {
-            FireGrapple();
-
+            StartGrapple(teleportScript.teleportDestination);
+            Destroy(teleportScript.teleportationTarget);
         }
+    }
 
+    void FixedUpdate()
+    {
         if (isGrappling)
         {
-            ApplyGrappleForce();
+            GrappleMovement();
         }
-
-        // Apply gravity if not grounded
-        if ( isGrappling)
-        {
-            velocity.y -= 9.81f * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-        }
-
-        if (isStoping)
-        {
-            stopingTimer += Time.deltaTime;
-        }
-        if (stopingTimer >= 0.35f)
-        {
-            isGrappling = false;
-            velocity = Vector3.zero; // Stop movement
-            stopingTimer = 0;
-            isStoping = false;
-        }
-         // Move player using velocity
     }
 
-
-    void FireGrapple()
+    void StartGrapple(Vector3 target)
     {
-
         isGrappling = true;
-        // Calculate direction and apply an initial burst of force
-        Vector3 direction = (ScreenAimCheck.teleportDestination - transform.position + new Vector3(0,graplerYoofset,0)).normalized;
-            velocity = direction * hookForce; // Instant pull force
-        
+        grapplePoint = target;
+        rb.useGravity = false; // Optional: Disable gravity while grappling
     }
 
-    void ApplyGrappleForce()
+    void GrappleMovement()
     {
-        Vector3 direction = (ScreenAimCheck.teleportDestination - transform.position+ new Vector3(0,graplerYoofset,0)).normalized;
+        Vector3 direction = (grapplePoint - playerTransform.position).normalized;
+        float distance = Vector3.Distance(playerTransform.position, grapplePoint);
 
-        // Gradually slow down as we get close to the point
-        float distance = Vector3.Distance(transform.position, ScreenAimCheck.teleportDestination + new Vector3(0, graplerYoofset, 0));
-        if (distance <= 10f) // Stop grappling when close
+        // Apply force toward the grapple point
+        rb.velocity = direction * grappleSpeed;
+
+        // Stop grappling if close enough or colliding
+        if (distance < stopDistance)
         {
-            isStoping = true;
-            
+            StopGrapple();
         }
+    }
+
+    void StopGrapple()
+    {
+        isGrappling = false;
+        rb.useGravity = true; // Re-enable gravity
+        //rb.velocity = Vector3.zero; // Stop movement
     }
 }

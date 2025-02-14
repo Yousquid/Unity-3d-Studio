@@ -66,7 +66,7 @@ public class ScreenCenterObjectCheck : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.tag == "Soul")
+                if (hit.collider.gameObject.tag == "Grappler")
                 {
                     teleportDestination = hit.collider.transform.position;
                     teleportationTarget = hit.collider.gameObject;
