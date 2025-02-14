@@ -137,6 +137,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
     void Jump()
     {
+        
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.drag = 0; // Ensure drag doesn¡¯t interfere
 
