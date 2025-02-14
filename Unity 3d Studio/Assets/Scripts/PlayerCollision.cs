@@ -26,4 +26,12 @@ public class PlayerCollision : MonoBehaviour
             playerMovement.jumpOrdashCount -= 1;;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            SoundSystem.instance.PlaySound("Land");
+        }
+    }
 }

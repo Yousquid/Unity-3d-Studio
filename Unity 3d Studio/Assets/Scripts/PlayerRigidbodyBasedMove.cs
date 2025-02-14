@@ -137,7 +137,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
     void Jump()
     {
-        
+        SoundSystem.instance.PlaySound("Jump");
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.drag = 0; // Ensure drag doesn¡¯t interfere
 
@@ -154,6 +154,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
     private void StartDash()
     {
+        SoundSystem.instance.PlaySound("Dash");
         isDashing = true;
         isDashReady = false;
         dashTime = dashDuration;
