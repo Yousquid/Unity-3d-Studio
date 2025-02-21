@@ -8,6 +8,7 @@ TagManager:
   - Soul
   - Grappler
   - Slime
+  - Booster
   layers:
   - Default
   - TransparentFX

@@ -44,6 +44,9 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     Vector3 moveDirection;
     Vector3 dashDirection;
     public Rigidbody rb;
+    public Vector3 lastPlayerVelocity;
+
+    public bool canExceedSpeedOnGround = false;
 
     void Start()
     {
@@ -51,6 +54,10 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
         rb.freezeRotation = true;
     }
 
+    private void LateUpdate()
+    {
+        lastPlayerVelocity = rb.velocity;
+    }
     void Update()
     {
         // Ground check
@@ -125,6 +132,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     private void SpeedControl()
     {
         if (isDashing) return; // Ignore speed control during dash
+        if (canExceedSpeedOnGround) return;
 
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 

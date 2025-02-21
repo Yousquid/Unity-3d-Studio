@@ -33,5 +33,17 @@ public class PlayerCollision : MonoBehaviour
         {
             SoundSystem.instance.PlaySound("Land");
         }
+        if (collision.gameObject.tag == "Booster")
+        {
+            playerMovement.canExceedSpeedOnGround = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Booster")
+        {
+            playerMovement.canExceedSpeedOnGround = false;
+        }
     }
 }
