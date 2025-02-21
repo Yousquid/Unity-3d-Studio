@@ -23,7 +23,7 @@ public class Booster : MonoBehaviour
 
         if (boostTimer > boostTimeDuration)
         {
-            rb.AddForce(reflectDirection * boostForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * boostForce, ForceMode.Impulse);
             boostTimer = 0;
         }
 

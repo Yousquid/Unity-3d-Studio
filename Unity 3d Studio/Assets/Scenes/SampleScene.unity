@@ -3671,7 +3671,7 @@ PrefabInstance:
     - target: {fileID: 4122789016615060712, guid: ecdb78f0cc212c94cb1fa8c8f1808194,
         type: 3}
       propertyPath: boostForce
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4991701075096569186, guid: ecdb78f0cc212c94cb1fa8c8f1808194,
         type: 3}
