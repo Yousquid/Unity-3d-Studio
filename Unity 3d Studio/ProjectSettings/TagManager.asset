@@ -9,6 +9,7 @@ TagManager:
   - Grappler
   - Slime
   - Booster
+  - Manager
   layers:
   - Default
   - TransparentFX

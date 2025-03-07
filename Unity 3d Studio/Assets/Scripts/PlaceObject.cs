@@ -100,12 +100,17 @@ public class PlaceObject : MonoBehaviour
         }
         else if (soulAmount >= soulMax)
         {
-            GameObject[] souls = GameObject.FindGameObjectsWithTag("Soul");
-            foreach (GameObject soul in souls)
-            {
-                Destroy(soul);
-            }
+            DestroyAllPlaceObject();
             Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+        }
+    }
+
+    public static void DestroyAllPlaceObject()
+    {
+        GameObject[] souls = GameObject.FindGameObjectsWithTag("Soul");
+        foreach (GameObject soul in souls)
+        {
+            Destroy(soul);
         }
     }
 

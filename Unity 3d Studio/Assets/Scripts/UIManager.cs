@@ -8,7 +8,11 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI checkpointTextRemind;
     public TextMeshProUGUI checkpointCheckRemind;
-    static bool IsCheckpointRemind = false;
+    public bool IsCheckpoint = false;
+
+    public bool IsChecking = false;
+    private float checkTimer = 0;
+    private float checkTotal = 1f;
 
     private void Update()
     {
@@ -18,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     void CheckpointUI()
     {
-        if (IsCheckpointRemind)
+        if (IsCheckpoint)
         {
             checkpointTextRemind.enabled = true;
         }
@@ -27,9 +31,22 @@ public class UIManager : MonoBehaviour
             checkpointTextRemind.enabled = false;
         }
 
-        if (IsCheckpointRemind && Input.GetKeyDown(KeyCode.E))
+        CheckTextUI();
+    }
+
+    void CheckTextUI()
+    {
+        if (IsChecking)
         { 
-        
+            checkpointCheckRemind.enabled = true;
+            checkTimer += Time.deltaTime;
+        }
+
+        if (checkTimer >= checkTotal)
+        {
+            checkpointCheckRemind.enabled = false;
+            IsChecking = false ;
+            checkTimer = 0;
         }
     }
 }
