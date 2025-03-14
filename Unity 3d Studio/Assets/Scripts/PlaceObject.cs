@@ -28,7 +28,7 @@ public class PlaceObject : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRigidbodyBasedMove>();
+        //Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRigidbodyBasedMove>();
 
         if (placeableObjects.Count > 0)
         {

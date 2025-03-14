@@ -4668,7 +4668,7 @@ MonoBehaviour:
   soulAmount: 0
   soulMax: 0
   soulUsed: 0
-  Player: {fileID: 0}
+  Player: {fileID: 2049001708}
 --- !u!114 &1831961968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5418,6 +5418,8 @@ MonoBehaviour:
   PlayerMovement: {fileID: 0}
   PlaceObject: {fileID: 0}
   PlayerRespawn: {fileID: 0}
+  targetTimeScale: 0.5
+  duration: 2
 --- !u!114 &2049001710
 MonoBehaviour:
   m_ObjectHideFlags: 0
