@@ -1045,7 +1045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 186.2, y: 373}
+  m_AnchoredPosition: {x: 186.2, y: -46.24}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374831745
@@ -4336,19 +4336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press "E" to reset checkpoint
-
-    Click Right Mouse To Enter Ability
-    Building
-
-    Click Left Mouse To Build
-
-    Use "Q" & "E" To Adjust Place Distance
-
-    Press
-    "Shift" To Dash
-
-    Collide Placed Object To Restore Dash or Double Jump'
+  m_text: Press "E" to reset checkpoint
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
