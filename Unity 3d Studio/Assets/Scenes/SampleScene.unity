@@ -3790,17 +3790,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 70860d0459b760340a9184be0506b95a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 211.13
+      value: 210.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70860d0459b760340a9184be0506b95a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.72
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70860d0459b760340a9184be0506b95a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.145237
+      value: 28.38
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70860d0459b760340a9184be0506b95a,
         type: 3}
@@ -5418,8 +5418,9 @@ MonoBehaviour:
   PlayerMovement: {fileID: 0}
   PlaceObject: {fileID: 0}
   PlayerRespawn: {fileID: 0}
-  targetTimeScale: 0.5
-  duration: 2
+  targetTimeScale: 0.1
+  timeScaleDuration: 0.5
+  isTimeSlowing: 0
 --- !u!114 &2049001710
 MonoBehaviour:
   m_ObjectHideFlags: 0

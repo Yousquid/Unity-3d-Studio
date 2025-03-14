@@ -9,7 +9,9 @@ public class PlayerCollision : MonoBehaviour
     public PlaceObject PlaceObject;
     public PlayerRespawn PlayerRespawn;
     public float targetTimeScale = 0.1f; // 目标时间流速（50%）
-    public float duration = 1.0f; // 变慢过程的持续时间
+    public float timeScaleDuration = 5f; // 变慢过程的持续时间
+    public bool isTimeSlowing;
+    private float timeScaleTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,41 +20,11 @@ public class PlayerCollision : MonoBehaviour
         PlayerRespawn = GetComponent<PlayerRespawn>();
     }
 
-    IEnumerator SlowDownTime()
-    {
-        float startScale = Time.timeScale;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.unscaledDeltaTime; // 用 unscaledDeltaTime 避免受 Time.timeScale 影响
-            Time.timeScale = 0.6F;
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-
-        Time.timeScale = targetTimeScale; // 确保最终精准达到目标值
-        StartCoroutine(RestoreTime());
-
-    }
-
-    IEnumerator RestoreTime()
-    {
-        float startScale = Time.timeScale;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.unscaledDeltaTime;
-            Time.timeScale = Mathf.Lerp(startScale, 1.0f, elapsed / duration);
-            yield return null;
-        }
-
-        Time.timeScale = 1.0f;
-    }
+    
     // Update is called once per frame
     void Update()
     {
-        
+        SlowTimeDown();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,8 +33,8 @@ public class PlayerCollision : MonoBehaviour
         {
             PlayerMovement.jumpOrdashCount -= 1;
             PlaceObject.soulUsed += 1;
-            StartCoroutine(SlowDownTime());
-
+            //StartCoroutine(SlowDownTime());
+            isTimeSlowing = true;
         }
         if (other.gameObject.tag == "Soul_Upgrade")
         {
@@ -92,6 +64,21 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "Booster")
         {
             PlayerMovement.canExceedSpeedOnGround = false;
+        }
+    }
+
+    private void SlowTimeDown()
+    {
+        if (isTimeSlowing)
+        {
+            Time.timeScale = targetTimeScale;
+            timeScaleTimer += Time.unscaledDeltaTime;
+        }
+        if (timeScaleTimer >= timeScaleDuration)
+        {
+            Time.timeScale = 1;
+            isTimeSlowing=false;
+            timeScaleTimer = 0f;
         }
     }
 }
