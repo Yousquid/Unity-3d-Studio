@@ -13,12 +13,12 @@ public class Soul : MonoBehaviour
        
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         ObjectPlace.soulAmount -= 1;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         ObjectPlace = GameObject.FindWithTag("MainCamera").GetComponent<PlaceObject>();
         ObjectPlace.soulAmount += 1;

@@ -10,7 +10,13 @@ public class UpgradeObject : Soul
         base.Update();
     }
 
-    
+    protected override void Awake()
+    {
+        ObjectPlace = GameObject.FindWithTag("MainCamera").GetComponent<PlaceObject>();
+    }
 
-
+    protected override void OnDestroy()
+    {
+        
+    }
 }

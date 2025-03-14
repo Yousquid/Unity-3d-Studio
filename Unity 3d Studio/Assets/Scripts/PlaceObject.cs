@@ -21,17 +21,22 @@ public class PlaceObject : MonoBehaviour
 
     [Header("Soul Limits")]
     public int soulAmount = 0;
-    public static int soulMax = 0;
-    public static int soulUsed = 0;
+    public  int soulMax = 0;
+    public  int soulUsed = 0;
+
+    public PlayerRigidbodyBasedMove Player;
 
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRigidbodyBasedMove>();
+
         if (placeableObjects.Count > 0)
         {
             UpdateGhostObject(0);
             ghost = Instantiate(ghostObjects[0]);
             
         }
+
     }
 
     void Update()
@@ -69,7 +74,7 @@ public class PlaceObject : MonoBehaviour
         if (scroll != 0)
         {
             currentHeight += scroll * 1.0f;
-            currentHeight = Mathf.Clamp(currentHeight, -10.0f, 10.0f);
+            currentHeight = Mathf.Clamp(currentHeight, -.5f, .5f);
         }
 
         // Adjust distance
@@ -95,16 +100,19 @@ public class PlaceObject : MonoBehaviour
 
     void PlaceObjectToScene()
     {
-        if (soulAmount < soulMax && soulUsed + soulAmount < soulMax)
+        if (soulAmount < soulMax - soulUsed)
         {
             Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
         }
-        else if (soulAmount >= soulMax)
+        else if (soulAmount == soulMax - soulUsed && soulMax - soulUsed != 0)
         {
             if (soulMax != 0)
             {
-                DestroyAllPlaceObject();
-                Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+                
+                    DestroyAllPlaceObject();
+                    Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+                
+                
             }
         }
     }
@@ -127,7 +135,7 @@ public class PlaceObject : MonoBehaviour
         }
     }
 
-    static public void Respawn()
+     public void Respawn()
     {
         soulUsed = 0;
     }

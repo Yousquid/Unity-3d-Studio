@@ -153,13 +153,13 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     void Jump()
     {
         SoundSystem.instance.PlaySound("Jump");
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.velocity = new Vector3(0, 0f, 0);
         rb.drag = 0; // Ensure drag doesn¡¯t interfere
 
         if (isGround)
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         else
-            rb.AddForce(transform.up * jumpForce * 0.5f, ForceMode.Impulse);
+            rb.AddForce(transform.up * jumpForce*0.8F, ForceMode.Impulse);
     }
 
     private void ResetJump()

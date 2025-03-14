@@ -11,6 +11,7 @@ TagManager:
   - Booster
   - Manager
   - Soul_Upgrade
+  - Dead_Area
   layers:
   - Default
   - TransparentFX

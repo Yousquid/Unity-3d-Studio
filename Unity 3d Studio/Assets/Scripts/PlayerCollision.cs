@@ -7,11 +7,13 @@ public class PlayerCollision : MonoBehaviour
 {
     public PlayerRigidbodyBasedMove PlayerMovement;
     public PlaceObject PlaceObject;
+    public PlayerRespawn PlayerRespawn;
     // Start is called before the first frame update
     void Start()
     {
         PlayerMovement = GetComponent<PlayerRigidbodyBasedMove>();
         PlaceObject = GameObject.FindWithTag("MainCamera").GetComponent<PlaceObject>();
+        PlayerRespawn = GetComponent<PlayerRespawn>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,10 @@ public class PlayerCollision : MonoBehaviour
         {
             PlaceObject.soulMax += 1;
         }
+        if (other.gameObject.tag == "Dead_Area")
+        {
+            PlayerRespawn.Respawn();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +49,7 @@ public class PlayerCollision : MonoBehaviour
         {
             PlayerMovement.canExceedSpeedOnGround = true;
         }
+        
     }
 
     private void OnCollisionExit(Collision collision)

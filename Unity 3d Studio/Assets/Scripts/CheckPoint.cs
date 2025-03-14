@@ -9,6 +9,7 @@ public class CheckPoint : MonoBehaviour
 
     private bool isPlayerInTrigger = false;
     private Vector3 collisionPosition;
+    private PlaceObject Placeobject;
     //public PlayerRespawn playerRespawn;
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class CheckPoint : MonoBehaviour
     {
         checkpointTriggerCollider = GetComponent<BoxCollider>();
         UImanager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UIManager>();
+        Placeobject = GameObject.FindWithTag("MainCamera").GetComponent<PlaceObject>();
         //playerRespawn = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRespawn>();
     }
 
@@ -26,7 +28,8 @@ public class CheckPoint : MonoBehaviour
         {
             PlayerRespawn.checkpointPosition = collisionPosition;
             PlaceObject.DestroyAllPlaceObject();
-            PlaceObject.Respawn();
+            Placeobject.Respawn();
+            UImanager.IsChecking = true;
             //PlayerPrefs.SetInt("soulMax", PlaceObject.soulMax);
         }
     }
