@@ -8,6 +8,8 @@ public class PlayerCollision : MonoBehaviour
     public PlayerRigidbodyBasedMove PlayerMovement;
     public PlaceObject PlaceObject;
     public PlayerRespawn PlayerRespawn;
+    public float targetTimeScale = 0.1f; // 目标时间流速（50%）
+    public float duration = 1.0f; // 变慢过程的持续时间
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,37 @@ public class PlayerCollision : MonoBehaviour
         PlayerRespawn = GetComponent<PlayerRespawn>();
     }
 
+    IEnumerator SlowDownTime()
+    {
+        float startScale = Time.timeScale;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime; // 用 unscaledDeltaTime 避免受 Time.timeScale 影响
+            Time.timeScale = 0.6F;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        Time.timeScale = targetTimeScale; // 确保最终精准达到目标值
+        StartCoroutine(RestoreTime());
+
+    }
+
+    IEnumerator RestoreTime()
+    {
+        float startScale = Time.timeScale;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Lerp(startScale, 1.0f, elapsed / duration);
+            yield return null;
+        }
+
+        Time.timeScale = 1.0f;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +61,8 @@ public class PlayerCollision : MonoBehaviour
         {
             PlayerMovement.jumpOrdashCount -= 1;
             PlaceObject.soulUsed += 1;
+            StartCoroutine(SlowDownTime());
+
         }
         if (other.gameObject.tag == "Soul_Upgrade")
         {

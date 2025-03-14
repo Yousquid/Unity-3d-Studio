@@ -100,11 +100,11 @@ public class PlaceObject : MonoBehaviour
 
     void PlaceObjectToScene()
     {
-        if (soulAmount < soulMax - soulUsed)
+        if (soulAmount < soulMax - soulUsed && Player.isGround)
         {
             Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
         }
-        else if (soulAmount == soulMax - soulUsed && soulMax - soulUsed != 0)
+        else if (soulAmount == soulMax - soulUsed && soulMax - soulUsed != 0 && Player.isGround)
         {
             if (soulMax != 0)
             {
