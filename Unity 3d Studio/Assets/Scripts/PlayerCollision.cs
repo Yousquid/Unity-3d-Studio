@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public PlayerRigidbodyBasedMove playerMovement;
-
+    public PlayerRigidbodyBasedMove PlayerMovement;
+    public PlaceObject PlaceObject;
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement = GetComponent<PlayerRigidbodyBasedMove>();
+        PlayerMovement = GetComponent<PlayerRigidbodyBasedMove>();
+        PlaceObject = GameObject.FindWithTag("MainCamera").GetComponent<PlaceObject>();
     }
 
     // Update is called once per frame
@@ -23,7 +24,12 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.gameObject.tag == "Soul")
         {
-            playerMovement.jumpOrdashCount -= 1;;
+            PlayerMovement.jumpOrdashCount -= 1;
+            PlaceObject.soulUsed += 1;
+        }
+        if (other.gameObject.tag == "Soul_Upgrade")
+        {
+            PlaceObject.soulMax += 1;
         }
     }
 
@@ -35,7 +41,7 @@ public class PlayerCollision : MonoBehaviour
         }
         if (collision.gameObject.tag == "Booster")
         {
-            playerMovement.canExceedSpeedOnGround = true;
+            PlayerMovement.canExceedSpeedOnGround = true;
         }
     }
 
@@ -43,7 +49,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Booster")
         {
-            playerMovement.canExceedSpeedOnGround = false;
+            PlayerMovement.canExceedSpeedOnGround = false;
         }
     }
 }

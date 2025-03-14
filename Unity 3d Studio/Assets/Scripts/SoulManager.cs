@@ -26,7 +26,7 @@ public class Soul : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (isDestroying) timer+= Time.deltaTime;
 
@@ -36,7 +36,7 @@ public class Soul : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {

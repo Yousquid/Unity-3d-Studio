@@ -21,7 +21,8 @@ public class PlaceObject : MonoBehaviour
 
     [Header("Soul Limits")]
     public int soulAmount = 0;
-    public int soulMax = 2;
+    public static int soulMax = 0;
+    public static int soulUsed = 0;
 
     void Start()
     {
@@ -94,14 +95,17 @@ public class PlaceObject : MonoBehaviour
 
     void PlaceObjectToScene()
     {
-        if (soulAmount < soulMax)
+        if (soulAmount < soulMax && soulUsed + soulAmount < soulMax)
         {
             Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
         }
         else if (soulAmount >= soulMax)
         {
-            DestroyAllPlaceObject();
-            Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+            if (soulMax != 0)
+            {
+                DestroyAllPlaceObject();
+                Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+            }
         }
     }
 
@@ -121,5 +125,10 @@ public class PlaceObject : MonoBehaviour
             Destroy(ghost);
             ghost = Instantiate(ghostObjects[currentGhostObjectIndex]);
         }
+    }
+
+    static public void Respawn()
+    {
+        soulUsed = 0;
     }
 }

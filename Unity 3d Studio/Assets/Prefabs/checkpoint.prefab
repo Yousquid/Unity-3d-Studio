@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 109257d861527224288d575f4496a56c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.25
+      value: -6.413
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 109257d861527224288d575f4496a56c,
         type: 3}
@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062af7b504b58874396ce707aeaf6849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointTriggerCollider: {fileID: 0}
+  UImanager: {fileID: 0}
 --- !u!65 &337870176955072820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -186,7 +188,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

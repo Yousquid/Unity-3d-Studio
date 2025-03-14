@@ -35,6 +35,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     public int jumpOrdashCount = 0; // Track jumps
     private bool isReadyToJump = true;
 
+    [Header("Dash")]
     private bool isDashing = false;
     private bool isDashReady = true;
     private float dashTime = 0f;
@@ -48,8 +49,13 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
     public bool canExceedSpeedOnGround = false;
 
+    [Header("Respwan")]
+    public PlayerRespawn playerRespawn;
+
+
     void Start()
     {
+        playerRespawn = this.GetComponent<PlayerRespawn>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -72,6 +78,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        Respwan();
 
         // Handle dash logic
         if (isDashing)
@@ -177,5 +184,13 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     private void ResetDash()
     {
         isDashReady = true;
+    }
+
+    public void Respwan()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            playerRespawn.Respawn();
+        }
     }
 }

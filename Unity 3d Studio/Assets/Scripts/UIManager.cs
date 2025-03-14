@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         CheckpointUI();
+        CheckTextUI();
     }
 
 
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
             checkpointTextRemind.enabled = false;
         }
 
-        CheckTextUI();
+        
     }
 
     void CheckTextUI()
