@@ -30,6 +30,8 @@ public class CheckPoint : MonoBehaviour
             PlaceObject.DestroyAllPlaceObject();
             Placeobject.Respawn();
             UImanager.IsChecking = true;
+            TopviewCamera.isUsingTopviewCamera = true;
+            CameraControllor.isUsingTopviewCamera = true;
             //PlayerPrefs.SetInt("soulMax", PlaceObject.soulMax);
         }
     }
