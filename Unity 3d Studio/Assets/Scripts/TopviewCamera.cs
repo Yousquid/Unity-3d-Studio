@@ -20,7 +20,7 @@ public class TopviewCamera : MonoBehaviour
      void StartCameraMove()
     {
         this.transform.position = playerPos.position;
-        targetPos = playerPos.position + new Vector3(1f, 19f, -7f);
+        targetPos = playerPos.position + new Vector3(2f, 15f, -8f);
         elapsedTime = 0f;
         isMoving = true;
         TopviewCamera.isUsingTopviewCamera = false;

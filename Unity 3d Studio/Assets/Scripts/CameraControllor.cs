@@ -7,6 +7,8 @@ public class CameraControllor : MonoBehaviour
 {
     public GameObject topviewCamer;
     public static bool isUsingTopviewCamera = false;
+    public float leastCameraDuration = 0.5f;
+    public float leastCameraTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +30,13 @@ public class CameraControllor : MonoBehaviour
     {
         if (CameraControllor.isUsingTopviewCamera)
         {
+            leastCameraTimer += Time.deltaTime;
 
-            if (Input.anyKeyDown && topviewCamer.activeInHierarchy == true)
+            if (Input.anyKeyDown && topviewCamer.activeInHierarchy == true && leastCameraTimer >= leastCameraDuration)
             {
                 TopviewCamera.isUsingTopviewCamera = false;
                 StopUsingTopviewCamera();
+                leastCameraTimer = 0;
                 CameraControllor.isUsingTopviewCamera = false;
             }
         }
@@ -42,6 +46,7 @@ public class CameraControllor : MonoBehaviour
     public void UseTopviewCamera()
     {
         topviewCamer.SetActive(true);
+        
     }
 
     public void StopUsingTopviewCamera()
