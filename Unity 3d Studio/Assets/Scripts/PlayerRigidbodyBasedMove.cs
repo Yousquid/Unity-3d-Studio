@@ -113,9 +113,9 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
             // 主动往下施加一个小力
             rb.AddForce(Vector3.down * 4f, ForceMode.Acceleration);
             // 限制最大下落速度
-            if (rb.velocity.y < -2f)
+            if (rb.velocity.y < -3f)
             {
-                rb.velocity = new Vector3(rb.velocity.x, -2f, rb.velocity.z);
+                rb.velocity = new Vector3(rb.velocity.x, -3f, rb.velocity.z);
             }
         }
         else

@@ -24,7 +24,7 @@ public class CheckPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isPlayerInTrigger)
+        if (Input.GetKeyDown(KeyCode.C) && isPlayerInTrigger)
         {
             PlayerRespawn.checkpointPosition = collisionPosition;
             PlaceObject.DestroyAllPlaceObject();
