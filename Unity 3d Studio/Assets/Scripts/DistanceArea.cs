@@ -5,6 +5,7 @@ using UnityEngine;
 public class DistanceArea : MonoBehaviour
 {
     PlaceObject PlaceObject;
+    public float maxPlaceDistanceIncreased = 10;
     void Start()
     {
         PlaceObject = GameObject.FindWithTag("MainCamera").GetComponent<PlaceObject>();
@@ -20,7 +21,7 @@ public class DistanceArea : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlaceObject.maxPlaceDistance = 10;
+            PlaceObject.maxPlaceDistance = maxPlaceDistanceIncreased;
         }
     }
 

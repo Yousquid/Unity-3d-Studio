@@ -12,6 +12,8 @@ TagManager:
   - Manager
   - Soul_Upgrade
   - Dead_Area
+  - Float_Upgrade
+  - Grappler_Upgrade
   layers:
   - Default
   - TransparentFX

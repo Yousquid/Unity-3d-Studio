@@ -36,14 +36,23 @@ public class PlayerCollision : MonoBehaviour
             //StartCoroutine(SlowDownTime());
             isTimeSlowing = true;
         }
-        if (other.gameObject.tag == "Soul_Upgrade")
+        else if (other.gameObject.tag == "Soul_Upgrade")
         {
             PlaceObject.soulMax += 1;
         }
-        if (other.gameObject.tag == "Dead_Area")
+        else if (other.gameObject.tag == "Dead_Area")
         {
             PlayerRespawn.Respawn();
         }
+        else if (other.gameObject.tag == "Float_Upgrade")
+        {
+            PlayerMovement.canfloat = true;
+        }
+        else if (other.gameObject.tag == "Grappler_Upgrade")
+        {
+            PlaceObject.graplerMax += 1;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)

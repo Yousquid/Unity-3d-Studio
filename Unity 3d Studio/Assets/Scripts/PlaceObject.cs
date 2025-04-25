@@ -24,6 +24,10 @@ public class PlaceObject : MonoBehaviour
     public  int soulMax = 0;
     public  int soulUsed = 0;
 
+    public int graplerAmout = 0;
+    public int graplerMax = 0;
+    public int graplerUsed = 0;
+
     public PlayerRigidbodyBasedMove Player;
 
     void Start()
@@ -69,13 +73,6 @@ public class PlaceObject : MonoBehaviour
 
     void HandlePlacementControls()
     {
-        // Adjust height with scroll wheel
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll != 0)
-        {
-            currentHeight += scroll * 1.0f;
-            currentHeight = Mathf.Clamp(currentHeight, -.5f, .5f);
-        }
 
         // Adjust distance
         if (Input.GetKey(KeyCode.Q) && currentRayDistance < maxPlaceDistance)
@@ -100,29 +97,65 @@ public class PlaceObject : MonoBehaviour
 
     void PlaceObjectToScene()
     {
-        if (soulAmount < soulMax - soulUsed && Player.isGround)
+        if (currentObjectIndex == 0)
         {
-            Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
-        }
-        else if (soulAmount == soulMax - soulUsed && soulMax - soulUsed != 0 && Player.isGround)
-        {
-            if (soulMax != 0)
+            if (soulAmount < soulMax - soulUsed)
             {
-                
-                    DestroyAllPlaceObject();
+                Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+            }
+            else if (soulAmount == soulMax - soulUsed && soulMax - soulUsed != 0)
+            {
+                if (soulMax != 0)
+                {
+
+                    DestroyAllPlacedSoulObject();
                     Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
-                
-                
+
+
+                }
             }
         }
+        if (currentObjectIndex == 1)
+        {
+            if (graplerAmout < graplerMax - graplerUsed)
+            {
+                Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+            }
+            else if (graplerAmout == graplerMax - graplerUsed && graplerMax - graplerUsed != 0)
+            {
+                if (graplerMax != 0)
+                {
+                    print("111");
+                    DesstroyAllPlacedGraplerObject();
+                    Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+
+
+                }
+            }
+        }
+        
     }
 
     public static void DestroyAllPlaceObject()
+    {
+        DestroyAllPlacedSoulObject();
+        DesstroyAllPlacedGraplerObject();
+    }
+    public static void DestroyAllPlacedSoulObject()
     {
         GameObject[] souls = GameObject.FindGameObjectsWithTag("Soul");
         foreach (GameObject soul in souls)
         {
             Destroy(soul);
+        }
+    }
+
+    public static void DesstroyAllPlacedGraplerObject()
+    {
+        GameObject[] graplers = GameObject.FindGameObjectsWithTag("Grappler");
+        foreach (GameObject grappler in graplers)
+        {
+            Destroy(grappler);
         }
     }
 
@@ -138,5 +171,6 @@ public class PlaceObject : MonoBehaviour
      public void Respawn()
     {
         soulUsed = 0;
+        graplerUsed = 0;
     }
 }

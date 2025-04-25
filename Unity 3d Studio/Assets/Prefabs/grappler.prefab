@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1284975558099581654}
   - component: {fileID: 2966508556868625101}
   - component: {fileID: 833663204041858282}
+  - component: {fileID: 265870135366248852}
   m_Layer: 0
   m_Name: grappler
   m_TagString: Grappler
@@ -287,3 +288,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &265870135366248852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053331281955396154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8756afb10f3454b920d224401fcc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectPlace: {fileID: 0}
