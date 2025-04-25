@@ -1540,6 +1540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topviewCamer: {fileID: 38046988}
+  leastCameraDuration: 0.5
+  leastCameraTimer: 0
 --- !u!1001 &454134988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5660,6 +5662,7 @@ MonoBehaviour:
   jumpOrdashCount: 0
   rb: {fileID: 0}
   lastPlayerVelocity: {x: 0, y: 0, z: 0}
+  canfloat: 1
   canExceedSpeedOnGround: 0
   playerRespawn: {fileID: 0}
 --- !u!114 &2049001709

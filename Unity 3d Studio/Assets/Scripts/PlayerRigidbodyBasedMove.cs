@@ -47,6 +47,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     public Rigidbody rb;
     public Vector3 lastPlayerVelocity;
 
+    public bool canfloat = false;
     public bool canExceedSpeedOnGround = false;
 
     [Header("Respwan")]
@@ -79,6 +80,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
         MyInput();
         SpeedControl();
         Respwan();
+        FloatPlayer();
 
         // Handle dash logic
         if (isDashing)
@@ -103,6 +105,24 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
             rb.velocity = dashDirection * dashForce; // Maintain dash movement
     }
 
+    private void FloatPlayer()
+    {
+        if (!isGround && Input.GetKey(KeyCode.Space) && canfloat && jumpOrdashCount <= maxJumps && rb.velocity.y < 0f)
+        {
+            rb.useGravity = false;
+            // 主动往下施加一个小力
+            rb.AddForce(Vector3.down * 4f, ForceMode.Acceleration);
+            // 限制最大下落速度
+            if (rb.velocity.y < -2f)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, -2f, rb.velocity.z);
+            }
+        }
+        else
+        {
+            rb.useGravity = true;
+        }
+    }
     private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
