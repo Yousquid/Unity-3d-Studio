@@ -28,6 +28,8 @@ public class PlaceObject : MonoBehaviour
     public int graplerMax = 0;
     public int graplerUsed = 0;
 
+    public UIManager uiManager;
+
     public PlayerRigidbodyBasedMove Player;
 
     void Start()
@@ -45,6 +47,9 @@ public class PlaceObject : MonoBehaviour
 
     void Update()
     {
+        uiManager.SetSoulNumberAndMaxText(soulMax - soulUsed, soulMax);
+        uiManager.SetGrapplerNumberAndMaxtText(graplerMax - graplerUsed, graplerMax);
+
         // Toggle placement mode
         if (Input.GetMouseButtonDown(1))
         {

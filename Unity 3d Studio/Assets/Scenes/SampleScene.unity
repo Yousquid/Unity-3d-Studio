@@ -269,6 +269,12 @@ MonoBehaviour:
   checkpointTextRemind: {fileID: 1723293297}
   checkpointCheckRemind: {fileID: 374831745}
   IsCheckpoint: 0
+  soulNumberText: {fileID: 2043693567}
+  soulMaxText: {fileID: 2088687416}
+  grapplerNumberText: {fileID: 1982536820}
+  grapplerMaxText: {fileID: 624408465}
+  talkingBarText: {fileID: 545512283}
+  talkingBarImage: {fileID: 855570456}
   IsChecking: 0
 --- !u!4 &74727695
 Transform:
@@ -2806,14 +2812,14 @@ RectTransform:
   m_GameObject: {fileID: 545512281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.06891799, y: 0.40661615, z: 0.40661615}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 665280383}
+  m_Father: {fileID: 855570455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 168.4447, y: -351.70752}
+  m_AnchoredPosition: {x: 1.5468292, y: 2.152008}
   m_SizeDelta: {x: 945.4061, y: 195.968}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &545512283
@@ -3284,7 +3290,6 @@ RectTransform:
   - {fileID: 1306929366}
   - {fileID: 855570455}
   - {fileID: 98307909}
-  - {fileID: 545512282}
   - {fileID: 2043693566}
   - {fileID: 2088687415}
   - {fileID: 1982536819}
@@ -4041,7 +4046,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 14.51, y: 2.459322, z: 2.459322}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 545512282}
   m_Father: {fileID: 665280383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7237,6 +7243,7 @@ MonoBehaviour:
   graplerAmout: 0
   graplerMax: 0
   graplerUsed: 0
+  uiManager: {fileID: 74727694}
   Player: {fileID: 2049001708}
 --- !u!114 &1831961968
 MonoBehaviour:
