@@ -58,6 +58,10 @@ public class UIManager : MonoBehaviour
         
     }
 
+    public void SetTalingText()
+    { 
+        
+    }
     void CheckTextUI()
     {
         if (IsChecking)
