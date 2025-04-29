@@ -7,6 +7,7 @@ public class NPCTalking : MonoBehaviour
     public string talkingWords;
     public BoxCollider thisCollider;
 
+
     private void Start()
     {
         thisCollider = GetComponent<BoxCollider>();
