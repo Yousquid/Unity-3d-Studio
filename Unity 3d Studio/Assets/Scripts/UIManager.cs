@@ -58,9 +58,15 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void SetTalingText()
-    { 
-        
+    public void SetTalkingText(string talkingContext)
+    {
+        talkingBarImage.gameObject.SetActive(true);
+        talkingBarText.text = talkingContext;
+    }
+
+    public void CloseTalkingText()
+    {
+        talkingBarImage.gameObject.SetActive(false);
     }
     void CheckTextUI()
     {

@@ -16,6 +16,7 @@ public class Grapler : MonoBehaviour
     public float stopDistance = 2f; // Stop when close to target
     public bool isGrappling = false;
 
+    public PlaceObject placeObjectManager;
     private Vector3 grapplePoint;
 
     void Update()
@@ -40,6 +41,7 @@ public class Grapler : MonoBehaviour
         isGrappling = true;
         grapplePoint = target;
         rb.useGravity = false; // Optional: Disable gravity while grappling
+        placeObjectManager.graplerUsed += 1;
     }
 
     void GrappleMovement()
