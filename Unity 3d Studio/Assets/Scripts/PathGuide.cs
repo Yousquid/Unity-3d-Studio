@@ -7,6 +7,7 @@ public class PathGuide : MonoBehaviour
     public LineRenderer lineRenderer;
     public CheckPointManager savePointManager;
     public float scrollSpeed = -0.5f;
+    public float heightOffset = 1f; // 让线条稍微离地
 
     private Material lineMaterial;
     private float offset;
@@ -19,21 +20,25 @@ public class PathGuide : MonoBehaviour
         lineMaterial = lineRenderer.material;
 
 
-        if (next != null)
-        {
-            lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, current.position + Vector3.up); // 稍微抬高一点
-            lineRenderer.SetPosition(1, next.position + Vector3.up);
-        }
-        else
-        {
-            lineRenderer.enabled = false;
-        }
     }
 
     void Update()
     {
         offset += Time.deltaTime * scrollSpeed;
         lineMaterial.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+        Transform current = savePointManager.GetCurrentSavePoint();
+        Transform next = savePointManager.GetNextSavePoint();
+
+        if (current != null && next != null)
+        {
+            lineRenderer.enabled = true;
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, current.position + Vector3.up * heightOffset);
+            lineRenderer.SetPosition(1, next.position + Vector3.up * heightOffset);
+        }
+        else
+        {
+            lineRenderer.enabled = false;
+        }
     }
 }

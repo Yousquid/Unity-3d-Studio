@@ -12,6 +12,7 @@ public class CheckPoint : MonoBehaviour
     private PlaceObject Placeobject;
     public int thisCheckpointNumber;
     public CheckPointManager checkPointManager;
+    public bool hasUpdatedCheckpoint = false;
     //public PlayerRespawn playerRespawn;
 
     // Start is called before the first frame update
@@ -33,7 +34,11 @@ public class CheckPoint : MonoBehaviour
             PlaceObject.DestroyAllPlaceObject();
             Placeobject.Respawn();
             UImanager.IsChecking = true;
-            checkPointManager.currentIndex = thisCheckpointNumber;
+            if (!hasUpdatedCheckpoint)
+            {
+                checkPointManager.currentIndex = thisCheckpointNumber;
+                hasUpdatedCheckpoint = true;
+            }
             TopviewCamera.isUsingTopviewCamera = true;
             CameraControllor.isUsingTopviewCamera = true;
             //PlayerPrefs.SetInt("soulMax", PlaceObject.soulMax);

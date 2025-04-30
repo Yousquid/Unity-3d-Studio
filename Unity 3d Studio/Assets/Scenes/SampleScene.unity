@@ -363,6 +363,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 1488269425}
   savePointManager: {fileID: 74727696}
   scrollSpeed: 0.5
+  heightOffset: 1
 --- !u!1001 &80409175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9676,6 +9677,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: stele
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766887966070469562, guid: 0739aa8851f2f1a469b232797bb4dafd,
+        type: 3}
+      propertyPath: hasUpdatedCheckpoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
