@@ -5,7 +5,7 @@ using UnityEngine;
 public class BouncyBlock : MonoBehaviour
 {
     public float bounceForceMultiplier = 1.1f;
-    private PlayerRigidbodyBasedMove player;
+    public PlayerRigidbodyBasedMove player;
     // Start is called before the first frame update
     void Start()
     {

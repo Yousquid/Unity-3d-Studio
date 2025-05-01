@@ -53,6 +53,9 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     [Header("Respwan")]
     public PlayerRespawn playerRespawn;
 
+    public AudioSource walkingAudio;
+    
+
 
     void Start()
     {
@@ -147,7 +150,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
     private void MovePlayer()
     {
-        //SoundSystem.instance.PlaySound("Walk");
+        
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         Vector3 force = moveDirection.normalized * speed * 10f;
 
@@ -155,6 +158,21 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
             rb.AddForce(force, ForceMode.Force);
         else
             rb.AddForce(force * airMultiplier, ForceMode.Force);
+
+        if (isGround && rb.velocity.magnitude > 0.1f)
+        {
+            if (!walkingAudio.isPlaying)
+            {
+                walkingAudio.Play();
+            }
+        }
+        else
+        {
+            if (walkingAudio.isPlaying)
+            {
+                walkingAudio.Stop();
+            }
+        }
     }
 
     private void SpeedControl()
