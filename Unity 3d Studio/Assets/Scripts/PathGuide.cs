@@ -6,7 +6,7 @@ public class PathGuide : MonoBehaviour
 {
     public LineRenderer lineRenderer;
     public CheckPointManager savePointManager;
-    public float scrollSpeed = -0.5f;
+    public float scrollSpeed = 0.5f;
     public float heightOffset = 1f; // »√œﬂÃı…‘Œ¢¿Îµÿ
 
     private Material lineMaterial;
@@ -33,8 +33,8 @@ public class PathGuide : MonoBehaviour
         {
             lineRenderer.enabled = true;
             lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, current.position + Vector3.up * heightOffset);
-            lineRenderer.SetPosition(1, next.position + Vector3.up * heightOffset);
+            lineRenderer.SetPosition(1, current.position + Vector3.up * heightOffset);
+            lineRenderer.SetPosition(0, next.position + Vector3.up * heightOffset);
         }
         else
         {
