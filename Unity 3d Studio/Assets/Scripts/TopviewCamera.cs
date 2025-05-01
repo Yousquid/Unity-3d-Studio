@@ -44,11 +44,6 @@ public class TopviewCamera : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        { 
-            StartCameraMove();
-        }
-
         if (TopviewCamera.isUsingTopviewCamera)
         {
             StartCameraMove();

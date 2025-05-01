@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject gameUI;
     public TextMeshProUGUI checkpointTextRemind;
     public TextMeshProUGUI checkpointCheckRemind;
     public bool IsCheckpoint = false;
@@ -22,9 +23,14 @@ public class UIManager : MonoBehaviour
     private float checkTimer = 0;
     private float checkTotal = 1f;
 
+    public GameObject startScreenUI;
+    public GameObject startCamera;
+
+
     private void Start()
     {
         talkingBarImage.gameObject.SetActive(false);
+        gameUI.SetActive(false);
     }
 
     private void Update()
@@ -58,6 +64,12 @@ public class UIManager : MonoBehaviour
         
     }
 
+    public void OnClickStartGame()
+    {
+        startCamera.SetActive(false);
+        startScreenUI.SetActive(false);
+        gameUI.SetActive(true);
+    }
     public void SetTalkingText(string talkingContext)
     {
         talkingBarImage.gameObject.SetActive(true);
