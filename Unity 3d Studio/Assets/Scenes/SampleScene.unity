@@ -565,18 +565,60 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Dash
-    clip: {fileID: 8300000, guid: 13a517bc254854d41aca48a421fd5d85, type: 3}
+    clip: {fileID: 8300000, guid: 0c090be077d9c7c43b1d701d199cec66, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Land
-    clip: {fileID: 8300000, guid: c0a013a78a7e56d4d9ba81759e6fbae6, type: 3}
+    clip: {fileID: 8300000, guid: ebf04cf8430b7e74d889472f0c767c13, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  music: []
+  - name: Build
+    clip: {fileID: 8300000, guid: ba70e65ee98aa8340a5fe73f513aa5d6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Check
+    clip: {fileID: 8300000, guid: 731a7132409df1d42b49cc00baa271af, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: npcTalk
+    clip: {fileID: 8300000, guid: b7dff6f57eba1c14cabf95ce88538392, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Timeslow
+    clip: {fileID: 8300000, guid: 686723e55607adc4683f1c8804109501, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: 54ba280e501f8354fb6de06d7a9c0b3a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  music:
+  - name: WindAmbience
+    clip: {fileID: 8300000, guid: d76d7a1fa433c834895785bd2f5706ab, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 765cd4c5bf8402243a4b4d1cb2f345e3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   musicSource: {fileID: 0}
   lastPlayedSFX: {fileID: 0}
   soundEffectsSources: []
