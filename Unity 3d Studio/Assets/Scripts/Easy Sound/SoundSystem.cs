@@ -49,7 +49,8 @@ public class SoundSystem : MonoBehaviour
 
     public void Start()
     {
-
+        SoundSystem.instance.PlayMusic("Music");
+        //SoundSystem.instance.PlayMusic("WindAmbience");
     }
 
     public void PlaySound(string name)

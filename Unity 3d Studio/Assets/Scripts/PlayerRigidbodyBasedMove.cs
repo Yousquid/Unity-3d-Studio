@@ -147,6 +147,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
 
     private void MovePlayer()
     {
+        //SoundSystem.instance.PlaySound("Walk");
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         Vector3 force = moveDirection.normalized * speed * 10f;
 

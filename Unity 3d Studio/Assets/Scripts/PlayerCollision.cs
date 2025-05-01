@@ -33,12 +33,14 @@ public class PlayerCollision : MonoBehaviour
         {
             PlayerMovement.jumpOrdashCount -= 1;
             PlaceObject.soulUsed += 1;
+            SoundSystem.instance.PlaySound("Timeslow");
             //StartCoroutine(SlowDownTime());
             isTimeSlowing = true;
         }
         else if (other.gameObject.tag == "Soul_Upgrade")
         {
             PlaceObject.soulMax += 1;
+            SoundSystem.instance.PlaySound("Collect");
         }
         else if (other.gameObject.tag == "Dead_Area")
         {
@@ -47,10 +49,12 @@ public class PlayerCollision : MonoBehaviour
         else if (other.gameObject.tag == "Float_Upgrade")
         {
             PlayerMovement.canfloat = true;
+            SoundSystem.instance.PlaySound("Collect");
         }
         else if (other.gameObject.tag == "Grappler_Upgrade")
         {
             PlaceObject.graplerMax += 1;
+            SoundSystem.instance.PlaySound("Collect");
         }
         
     }

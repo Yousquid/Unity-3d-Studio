@@ -107,6 +107,7 @@ public class PlaceObject : MonoBehaviour
             if (soulAmount < soulMax - soulUsed)
             {
                 Instantiate(placeableObjects[currentObjectIndex], ghost.transform.position, Quaternion.identity);
+                SoundSystem.instance.PlaySound("Build");
             }
             else if (soulAmount == soulMax - soulUsed && soulMax - soulUsed != 0)
             {

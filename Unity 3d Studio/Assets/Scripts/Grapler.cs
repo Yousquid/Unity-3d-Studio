@@ -42,6 +42,7 @@ public class Grapler : MonoBehaviour
         grapplePoint = target;
         rb.useGravity = false; // Optional: Disable gravity while grappling
         placeObjectManager.graplerUsed += 1;
+        SoundSystem.instance.PlaySound("Grapple");
     }
 
     void GrappleMovement()

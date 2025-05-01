@@ -30,6 +30,7 @@ public class NPCTalking : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             uiManager.SetTalkingText(talkingWords);
+            SoundSystem.instance.PlaySound("npcTalk");
         }
     }
 

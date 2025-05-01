@@ -32,6 +32,7 @@ public class CheckPoint : MonoBehaviour
         {
             PlayerRespawn.checkpointPosition = collisionPosition;
             PlaceObject.DestroyAllPlaceObject();
+            SoundSystem.instance.PlaySound("Check");
             Placeobject.Respawn();
             UImanager.IsChecking = true;
             if (!hasUpdatedCheckpoint)
