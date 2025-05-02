@@ -72,7 +72,7 @@ public class PlaceObject : MonoBehaviour
         }
         else
         {
-            ghost.transform.position = Vector3.zero;
+            ghost.transform.position = Vector3.zero + new Vector3(0,-20,0);
         }
     }
 
@@ -90,6 +90,7 @@ public class PlaceObject : MonoBehaviour
         }
 
         // Move ghost object
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         ghost.transform.position = ray.origin + ray.direction * currentRayDistance + new Vector3(0, currentHeight, 0);
 

@@ -35,8 +35,13 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        CheckpointUI();
-        CheckTextUI();
+        
+        if (MoveCamera.hasTransitioned)
+        {
+            gameUI.SetActive(true);
+            CheckpointUI();
+            CheckTextUI();
+        }
     }
 
     public void SetSoulNumberAndMaxText(int soulAmount, int soulMaxAmount)
@@ -66,9 +71,9 @@ public class UIManager : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        startCamera.SetActive(false);
+        //startCamera.SetActive(false);
         startScreenUI.SetActive(false);
-        gameUI.SetActive(true);
+        
     }
     public void SetTalkingText(string talkingContext)
     {

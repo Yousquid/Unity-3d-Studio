@@ -20,7 +20,7 @@ public class CameraRotationBasedonMouse : MonoBehaviour
 
     void Update()
     {
-        if (hasStartedGame)
+        if (hasStartedGame && MoveCamera.hasTransitioned)
         {
             //get mouse input
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseYSensitivity;
@@ -34,6 +34,8 @@ public class CameraRotationBasedonMouse : MonoBehaviour
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
+
+        
         
     }
 

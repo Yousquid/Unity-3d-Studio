@@ -4,29 +4,59 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public Transform cameraPos;
-    public Transform childCameraPos;
-    // Start is called before the first frame update
+    public Transform cameraPos;           // 第一人称的目标位置
+    public Transform childCameraPos;      // 实际摄像机位置
+    public Transform introCameraPos;      // 初始高空视角位置
+    public Vector3 fixedRotationEuler; // 在 Inspector 中设置你想要的固定角度
+    private Quaternion fixedRotation;
+
+    public float transitionDuration = 2f; // 镜头过渡时间
+    private float transitionTimer = 0f;
+
+    private bool isTransitioning = false;
+    public static bool hasTransitioned = false;
+
     void Start()
     {
-        ResetChildCameraPosition();
+        // 设置初始摄像机位置为高空俯拍视角
+        fixedRotation = Quaternion.Euler(fixedRotationEuler);
+        childCameraPos.position = introCameraPos.position;
+        childCameraPos.rotation = fixedRotation;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!CameraControllor.isUsingTopviewCamera)
-        {
-            Vector3 cameraTruePos = cameraPos.position + new Vector3(0, 2f, 0f);
+        // 点击开始游戏（你可以替换为按钮事件）
 
-            childCameraPos.position = cameraPos.position;
+
+        if (isTransitioning)
+        {
+            transitionTimer += Time.deltaTime;
+            float t = transitionTimer / transitionDuration;
+            t = Mathf.SmoothStep(0, 1, t); // 平滑插值
+
+            // 插值位置，不插值角度
+            childCameraPos.position = Vector3.Lerp(introCameraPos.position, cameraPos.position, t);
+            childCameraPos.rotation = fixedRotation;
+
+            if (t >= 1f)
+            {
+                isTransitioning = false;
+                hasTransitioned = true;
+            }
         }
-        
+        else if (hasTransitioned && !CameraControllor.isUsingTopviewCamera)
+        {
+            childCameraPos.position = cameraPos.position;
+            //childCameraPos.rotation = fixedRotation;
+        }
     }
 
-    void ResetChildCameraPosition()
+    public void OnClickStartCameraMove()
     {
-        childCameraPos.position = new Vector3(0, 0, 0);
-        childCameraPos.rotation = Quaternion.Euler(0,0,0);
+        
+            isTransitioning = true;
+            transitionTimer = 0f;
+        
     }
 }

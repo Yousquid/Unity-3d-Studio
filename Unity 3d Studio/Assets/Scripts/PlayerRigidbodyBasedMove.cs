@@ -132,7 +132,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // Jump input
-        if (Input.GetKeyDown(jumpKey) && isReadyToJump && jumpOrdashCount < maxJumps)
+        if (Input.GetKeyDown(jumpKey) && isReadyToJump && jumpOrdashCount < maxJumps && MoveCamera.hasTransitioned)
         {
             Jump();
             jumpOrdashCount++;
@@ -141,7 +141,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
         }
 
         // Dash input
-        if (Input.GetKeyDown(dashKey) && isDashReady && (isGround || canAirDash) && jumpOrdashCount < maxDashs)
+        if (Input.GetKeyDown(dashKey) && isDashReady && (isGround || canAirDash) && jumpOrdashCount < maxDashs && MoveCamera.hasTransitioned)
         {
             StartDash();
             jumpOrdashCount++;
@@ -154,7 +154,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         Vector3 force = moveDirection.normalized * speed * 10f;
 
-        if (isGround)
+        if (isGround && MoveCamera.hasTransitioned)
             rb.AddForce(force, ForceMode.Force);
         else
             rb.AddForce(force * airMultiplier, ForceMode.Force);
