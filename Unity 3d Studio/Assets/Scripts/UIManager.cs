@@ -24,13 +24,19 @@ public class UIManager : MonoBehaviour
     private float checkTotal = 1f;
 
     public GameObject startScreenUI;
-    public GameObject startCamera;
+
+    public GameObject controlPanel;
+    public GameObject startpanel;
+
+    public TextMeshProUGUI flyStatusText;
+    public GameObject pauseMenu;
 
 
     private void Start()
     {
         talkingBarImage.gameObject.SetActive(false);
         gameUI.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     private void Update()
@@ -42,8 +48,37 @@ public class UIManager : MonoBehaviour
             CheckpointUI();
             CheckTextUI();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None; // Hide and lock cursor
+            Cursor.visible = true;
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+        }
     }
 
+    public void OnClickQuitGame()
+    {
+        Application.Quit();
+    }
+    public void OnClickClosePauseMenu()
+    {
+        pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked; // Hide and lock cursor
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+    }
+    public void SetFlyTextOn()
+    {
+        flyStatusText.text = "On";
+        flyStatusText.color = Color.yellow;
+    }
+
+    public void SetFlyTextOff()
+    {
+        flyStatusText.text = "Off";
+        flyStatusText.color = Color.white;
+    }
     public void SetSoulNumberAndMaxText(int soulAmount, int soulMaxAmount)
     { 
         soulNumberText.text = $"{soulAmount}";
@@ -69,6 +104,17 @@ public class UIManager : MonoBehaviour
         
     }
 
+    public void OnClickOpenControlPanel()
+    {
+        startpanel.SetActive(false);
+        controlPanel.SetActive(true);
+    }
+
+    public void OnClickCloseControlPanel()
+    {
+        startpanel.SetActive(true);
+        controlPanel.SetActive(false);
+    }
     public void OnClickStartGame()
     {
         //startCamera.SetActive(false);

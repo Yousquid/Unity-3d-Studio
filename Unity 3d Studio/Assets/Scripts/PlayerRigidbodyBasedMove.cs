@@ -54,6 +54,8 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
     public PlayerRespawn playerRespawn;
 
     public AudioSource walkingAudio;
+
+    public UIManager uiManager;
     
 
 
@@ -62,6 +64,7 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
         playerRespawn = this.GetComponent<PlayerRespawn>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        
     }
 
     private void LateUpdate()
@@ -120,16 +123,21 @@ public class PlayerRigidbodyBasedMove : MonoBehaviour
             {
                 rb.velocity = new Vector3(rb.velocity.x, -3f, rb.velocity.z);
             }
+            uiManager.SetFlyTextOn();
         }
         else
         {
             rb.useGravity = true;
+            uiManager.SetFlyTextOff();
         }
     }
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        if (MoveCamera.hasTransitioned)
+        {
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+        }
 
         // Jump input
         if (Input.GetKeyDown(jumpKey) && isReadyToJump && jumpOrdashCount < maxJumps && MoveCamera.hasTransitioned)
