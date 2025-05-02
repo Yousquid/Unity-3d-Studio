@@ -9,7 +9,7 @@ public class FinalExitCollide : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Application.Quit();
+            SceneManager.LoadScene(1);
         }
     }
 }

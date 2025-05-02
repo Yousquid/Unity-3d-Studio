@@ -1227,13 +1227,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Collect
     clip: {fileID: 8300000, guid: 297e6b8cf25c74a4dad0782da4f6341c, type: 3}
-    volume: 0.405
+    volume: 0.26
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Grapple
     clip: {fileID: 8300000, guid: f083b54b64b1cf6418568783ae5b2252, type: 3}
-    volume: 1
+    volume: 0.493
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1246,13 +1246,13 @@ MonoBehaviour:
   music:
   - name: WindAmbience
     clip: {fileID: 8300000, guid: d76d7a1fa433c834895785bd2f5706ab, type: 3}
-    volume: 0.175
+    volume: 0.108
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Music
     clip: {fileID: 8300000, guid: 765cd4c5bf8402243a4b4d1cb2f345e3, type: 3}
-    volume: 0.329
+    volume: 0.421
     pitch: 1
     loop: 1
     source: {fileID: 0}
