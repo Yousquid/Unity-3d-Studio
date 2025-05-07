@@ -15,6 +15,7 @@ public class MoveCamera : MonoBehaviour
 
     private bool isTransitioning = false;
     public static bool hasTransitioned = false;
+    public Camera maincamera;
 
     void Start()
     {
@@ -42,7 +43,10 @@ public class MoveCamera : MonoBehaviour
             if (t >= 1f)
             {
                 isTransitioning = false;
+
                 hasTransitioned = true;
+
+                RemoveLayerFromCameraCulling(maincamera, "PlayerBody");
             }
         }
         else if (hasTransitioned && !CameraControllor.isUsingTopviewCamera)
@@ -58,5 +62,18 @@ public class MoveCamera : MonoBehaviour
             isTransitioning = true;
             transitionTimer = 0f;
         
+    }
+
+    void RemoveLayerFromCameraCulling(Camera cam, string layerName)
+    {
+        int layer = LayerMask.NameToLayer(layerName);
+        if (layer < 0)
+        {
+            Debug.LogWarning("Layer not found: " + layerName);
+            return;
+        }
+
+        // 用位运算将该层从cullingMask中移除
+        cam.cullingMask &= ~(1 << layer);
     }
 }
